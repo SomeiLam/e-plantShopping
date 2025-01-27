@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
+  const [checkout, setCheckout] = useState(false);
   const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
@@ -99,10 +101,11 @@ const CartItem = ({ onContinueShopping }) => {
         <br />
         <button
           className="get-started-button1"
-          onClick={() => alert('Coming soon')}
+          onClick={() => setCheckout(true)}
         >
-          Checkout
+          {checkout ? 'Coming soon' : 'Checkout'}
         </button>
+        {checkout ? <p>Checkout feature coming soon!</p> : null}
       </div>
     </div>
   );
